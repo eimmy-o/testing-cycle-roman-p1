@@ -155,3 +155,19 @@ def test_integration_collaboration():
     # caso problemático: restar para obtener 0 (I - I = 0)
     with pytest.raises(RomanError):
         subtract_roman("I", "I")
+
+# --- Parte 5: Pruebas de Aceptación ---
+
+def test_acceptance_whitespace():
+    # criterio 1: debe tolerar y limpiar espacios al inicio y al final
+    assert from_roman("  IV  ") == 4
+    assert from_roman("X ") == 10
+
+def test_acceptance_non_canonical():
+    # criterio 2: debe rechazar formas no canónicas como "IIII"
+    with pytest.raises(RomanError, match="not the canonical form|invalid"):
+        from_roman("IIII")
+
+def test_acceptance_lowercase():
+    # criterio 3: debe aceptar minúsculas indistintamente
+    assert from_roman("iv") == 4

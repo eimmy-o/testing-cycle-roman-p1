@@ -139,3 +139,19 @@ def test_roundtrip_differs():
 
 def test_count_char():
     assert _count_char("XVIII", "I") == 3
+
+
+# --- Parte 4: Prueba a Nivel de Integración ---
+
+def test_integration_collaboration():
+    # integración con suma (X + V = XV)
+    sum_result = add_roman("X", "V")
+    assert is_valid_roman(sum_result) is True, f"El resultado de la suma {sum_result} no fue aceptado como válido."
+
+    # integración con resta (X - V = V)
+    sub_result = subtract_roman("X", "V")
+    assert is_valid_roman(sub_result) is True, f"El resultado de la resta {sub_result} no fue aceptado como válido."
+
+    # caso problemático: restar para obtener 0 (I - I = 0)
+    with pytest.raises(RomanError):
+        subtract_roman("I", "I")

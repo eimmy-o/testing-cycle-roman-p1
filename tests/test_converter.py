@@ -111,7 +111,7 @@ def test_from_roman_invalid_subtractive():
 
 def test_from_roman_out_of_range():
     with pytest.raises(RomanError, match="value out of range 1..3999"):
-        from_roman("MMMM")
+        from_roman("MMMCMCM")
 
 def test_from_roman_valid_subtractive_pairs():
     assert from_roman("IV") == 4

@@ -59,6 +59,9 @@ def from_roman(s):
     text = s.upper().strip()
     if text == "":
         raise RomanError("empty string is not a roman numeral")
+    for invalid_seq in ["IIII", "XXXX", "CCCC", "MMMM", "VV", "LL", "DD"]:
+        if invalid_seq in text:
+            raise RomanError("not the canonical form")
     for ch in text:
         if ch not in _SINGLE:
             raise RomanError("invalid roman character: " + ch)

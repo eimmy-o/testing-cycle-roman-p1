@@ -43,7 +43,7 @@ Code coverage metrics measure what percentage of the *existing written code* has
 ## 4. Coverage
 
 ### Branch Coverage Before (Initial Audit)
-![Coverage Before](evidence/coverage_before_64.png)
+![Coverage Before](evidence/coverage_before.png)
 
 ### Branch Coverage After (Final Suite)
 ![Coverage After](evidence/coverage_after_100.png)

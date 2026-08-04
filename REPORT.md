@@ -9,10 +9,10 @@
 ## 2. Integration Finding
 
 **Defect Revealed:**
-When integrating `subtract_roman("I", "I")`, the internal execution correctly translates the strings to integers and performs the subtraction ($1 - 1 = 0$). However, when passing `0` to `to_roman`, the system crashes entirely by raising a `RomanError` (value out of range)[cite: 1]. The defect lies in the fact that `subtract_roman` propagates this unhandled exception instead of properly capturing it to return a value that `is_valid_roman` can safely evaluate and reject cleanly.
+When integrating `subtract_roman("I", "I")`, the internal execution correctly translates the strings to integers and performs the subtraction ($1 - 1 = 0$). However, when passing `0` to `to_roman`, the system crashes entirely by raising a `RomanError` (value out of range). The defect lies in the fact that `subtract_roman` propagates this unhandled exception instead of properly capturing it to return a value that `is_valid_roman` can safely evaluate and reject cleanly.
 
 **Why Unit Tests Missed It:**
-Unit tests evaluate `to_roman` and `from_roman` in complete isolation[cite: 1]. The unit tests for `to_roman` purposefully inject invalid inputs (like 0) and pass because they *expect* the `RomanError` to be raised[cite: 1]. They do not test what happens when that raised error travels upstream into another function's workflow. Therefore, the isolated paths pass flawlessly without revealing the architectural failure during integration.
+Unit tests evaluate `to_roman` and `from_roman` in complete isolation. The unit tests for `to_roman` purposefully inject invalid inputs (like 0) and pass because they *expect* the `RomanError` to be raised. They do not test what happens when that raised error travels upstream into another function's workflow. Therefore, the isolated paths pass flawlessly without revealing the architectural failure during integration.
 
 ---
 
@@ -44,8 +44,6 @@ Code coverage metrics measure what percentage of the *existing written code* has
 
 ### Branch Coverage Before (Initial Audit)
 ![Coverage Before](evidence/coverage_before_64.png)
-*(Placeholder: Reemplazar con la captura donde se muestra el 64% inicial)*
 
 ### Branch Coverage After (Final Suite)
 ![Coverage After](evidence/coverage_after_100.png)
-*(Placeholder: Reemplazar con la captura de la terminal mostrando el 100% y todos los tests pasando tras los fixes)*

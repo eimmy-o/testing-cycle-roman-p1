@@ -1,7 +1,46 @@
 # Software Testing Life Cycle Report
 
-## 1. Control Flow Graph of `to_roman`
+## 1. Control Flow Graph of `to_roman` Cyclomatic Complexity and Independent Paths
+![Control Flow Graph of to_roman](evidence/part1.jpg)
 
+### Definition-Use Table
+Step 3: List occurrences & assign a category to each variable
+
+| Line | definition | c-use | p-use |
+| :--- | :--- | :--- | :--- |
+| 1 | `n` | | |
+| 2 | | | `n` |
+| 3 | | | |
+| 4 | | | `n` |
+| 5 | | | |
+| 6 | | | `n` |
+| 7 | | | |
+| 8 | `out` | | |
+| 9 | `remaining` | `n` | |
+| 10 | `value`, `symbol` | | |
+| 11 | | | `remaining`, `value` |
+| 12 | | `out`, `symbol` | |
+| 13 | `remaining` | `remaining`, `value` | |
+| 14 | | `out` | |
+
+Step 4: Identify du-pairs and their use (p- or c-)
+
+| definition - use pair | variable(s) | |
+| :--- | :--- | :--- |
+| **start-line -> end-line** | **c-use** | **p-use** |
+| 1 -> 2 | | `n` |
+| 1 -> 4 | | `n` |
+| 1 -> 6 | | `n` |
+| 1 -> 9 | `n` | |
+| 8 -> 12 | `out` | |
+| 8 -> 14 | `out` | |
+| 9 -> 11 | | `remaining` |
+| 9 -> 13 | `remaining` | |
+| 10 -> 11 | | `value` |
+| 10 -> 12 | `symbol` | |
+| 10 -> 13 | `value` | |
+| 13 -> 11 | | `remaining` |
+| 13 -> 13 | `remaining` | |
 
 
 ---
